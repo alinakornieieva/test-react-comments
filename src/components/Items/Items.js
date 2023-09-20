@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import './Items.css'
 
-export const Items = () => {
+export const Items = ({ data, setData }) => {
     const [name, setName] = useState('')
     const enterName = (e) => {
         e.preventDefault()
-        console.log(name)
+        setData((prev) => [...prev, { id: Date.now(), name, comments: [] }])
+        setName('')
+    }
+    const deleteItem = (id) => {
+        setData((prev) => prev.filter((item) => item.id !== id))
     }
     return <div className="block items">
         <h1>Items</h1>
@@ -14,19 +18,12 @@ export const Items = () => {
                 onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" />
             <button type='submit'>Add New</button>
         </form>
-        <div className='item active-item'>
-            <span>name 1</span>
+        {data?.map((item) => <div key={item.id} className='item active-item'>
+            <span>{item.name}</span>
             <div>
-                <span className='amount'>3</span>
-                <button>Delete</button>
+                <span className='amount'>{item.comments.length}</span>
+                <button onClick={() => deleteItem(item.id)}>Delete</button>
             </div>
-        </div>
-        <div className='item'>
-            <span>name 1</span>
-            <div>
-                <span className='amount'>3</span>
-                <button>Delete</button>
-            </div>
-        </div>
+        </div>)}
     </div>
 }
