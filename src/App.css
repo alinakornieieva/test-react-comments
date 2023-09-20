@@ -1,0 +1,44 @@
+.app {
+  display: flex;
+}
+
+.app .main-blocks {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+.app .main-blocks .block {
+  width: 500px;
+  border: 1px solid red;
+  padding: 10px;
+  height: fit-content;
+}
+
+@media (max-width: 1300px) {
+  .app .main-blocks {
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+  }
+  .app .main-blocks .items {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  .app {
+    flex-direction: column;
+  }
+  .app .aside-title {
+    display: block;
+    margin: 0 auto;
+    width: 500px;
+    height: fit-content;
+  }
+  .app .main-blocks {
+    width: 100%;
+  }
+}
